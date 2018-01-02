@@ -1,12 +1,11 @@
 from bs4 import BeautifulSoup
 import requests
 import urllib
-import galleryscrape as gs
+import gallery_scrape as gs
 import os
 from PIL import Image
 
 IMAGE_HEIGHT = 256
-
 
 def get_html(url):
     response = requests.get(url)

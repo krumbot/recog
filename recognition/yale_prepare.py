@@ -49,7 +49,7 @@ def predict_faces(path, recognizer):
 
 faces_path = "assets/yale/"
 images, labels = get_images_and_labels(os.path.join(os.path.dirname(__file__), faces_path))
-
+print(images[0])
 face_recognizer.train(images, np.array(labels))
 
 predict_faces(faces_path, face_recognizer)
