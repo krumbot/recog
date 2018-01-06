@@ -3,11 +3,21 @@ import cv2
 from PIL import Image
 import numpy as np
 import math
+import json
 
+TRAINED_FACES_PATH = './trained_faces.json'
 TRAIN_PERCENTAGE = 80
 
+def add_to_trained_faces(person_number, name):
+    trained_faces = json.load(open(TRAINED_FACES_PATH))
+    trained_faces[person_number] = name
+    with open(TRAINED_FACES_PATH, 'w') as f:
+        json.dump(trained_faces, f, sort_keys=True, indent=4)
+
+
 def get_person_number():
-    return 0
+    trained_faces = json.load(open(TRAINED_FACES_PATH))    
+    return len(list(trained_faces.keys()))
 
 def split_train_test(image_list):
     split_value = math.ceil(len(image_list) * TRAIN_PERCENTAGE / 100)
@@ -74,7 +84,6 @@ def train_for_person(path, recognizer_data=None):
                 face_recognizer.update(training_set, labels)
             current_segment = len(face_segment)
             faces_of_interest = []
+    add_to_trained_faces(person_number, name)
     return face_recognizer
-
-train_for_person('./assets/actors/AdamDriver')
 

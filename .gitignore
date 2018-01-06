@@ -8,6 +8,8 @@ __pycache__/
 
 # ASSETS
 */assets*
+trained_faces.json
+trained_recognizer.yaml
 
 # Distribution / packaging
 .Python
